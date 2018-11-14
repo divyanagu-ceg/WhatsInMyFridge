@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .padding-left-50
+    h1.padding-top-20= title
+    ul
+      each item in items
+        li
+          h3= item.name
+          ul(type="square")
+            li
+              p(style="font-style:italic") Date: #{(new Date(item.date)).toLocaleDateString()}
+            - if (item.expiry)
+              li
+                p(style="font-style:italic") Expiry Date: #{(new Date(item.expiry)).toLocaleDateString()}
+            li
+              p(style="font-style:italic") Quantity: #{item.quantity}
+            li
+              p(style="font-style:italic") Is it a Left-Over?: #{item.left_overs}

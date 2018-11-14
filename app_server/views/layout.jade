@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/jquery-3.3.1.min.js')
+    script(src='/bootstrap/js/bootstrap.min.js')
+    script(src='/javascripts/script.js')
+  body
+      nav#menu-bar.navbar.navbar-expand-lg.navbar-dark.bg-dark
+        .container-fluid
+          a.navbar-brand.brand-name(href='/') What's in my fridge?
+          .collapse.navbar-collapse
+            ul.navbar-nav.mr-auto
+              li.nav-item
+                a.nav-link.menu-item(href='/list/') My Food
+              li.nav-item
+                a.nav-link.menu-item(href='/add-item/') Add/Edit Food
+      main
+          block content

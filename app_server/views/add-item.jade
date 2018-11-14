@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  .row.padding-top-20.padding-left-50
+    .col-xs-12.col-md-12
+      h3 Add food to the Fridge
+    .col-xs-12.col-md-6.padding-top-20
+      form.form-horizontal(action="/food", method="post", role="form")
+        .form-group.row
+          label.col-xs-10.col-sm-3.control-label(for="name") Name
+          .col-xs-12.col-sm-4
+            input#name.form-control(name="name")
+        .form-group.row
+          label.col-xs-10.col-sm-3.control-label(for="date") Date
+          .col-xs-12.col-sm-4
+            input#date.form-control(name="date", placeholder="(mm-dd-yyyy)")
+        .form-group.row
+          label.col-xs-10.col-sm-3.control-label(for="edate") Expiry Date
+          .col-xs-12.col-sm-4
+            input#edate.form-control(name="edate", placeholder="(mm-dd-yyyy)")
+        .form-group.row
+          label.col-xs-10.col-sm-3.control-label(for="quantity") Quantity
+          .col-xs-12.col-sm-2
+            input#quantity.form-control(name="quantity", type="number", min="1")
+        .form-group.row
+          label.col-xs-10.col-sm-3.control-label(for="left_over") Is it a left-over?
+          .col-xs-12.col-sm-2
+            select#rating.form-control.input-sm(name="left_over")
+              option False
+              option True
+        button.btn.btn-default Add to Fridge
+    .col-xs-12.col-md-6
+      h2= msg

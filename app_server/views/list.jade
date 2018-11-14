@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  .padding-left-50
+    h1.padding-top-20= title
+    h3= message
+    .card-deck.padding-top-20
+      each item in items
+        .card.bg-light.mb-3(style="max-width: 18rem;")
+          .card-header(style="background-color:#283c4f;color:white;text-align:center;font-weight:bold;font-size:30px") #{item.name}
+          .card-body
+            .card-text
+              - if (item.expiry)
+                p(style="font-style:italic") Expires: #{(new Date(item.expiry)).toLocaleDateString()}
+            p(style="font-style:italic") Date: #{(new Date(item.date)).toLocaleDateString()}
+            p You have <span style="font-weight:bold"> #{item.quantity} </span> left!
+            p Is it a Left-Over? #{(item.left_overs == "True" ? "Yes" : "No")}
+            - if (item.left_overs == "True") Yes 
+            - else No
+          .card-footer(style="background-color:#283c4f;color:white;text-align:center;font-weight:bold;") 
+            a(style="color:white",href='/delete/' + item.id) Remove from fridge 
