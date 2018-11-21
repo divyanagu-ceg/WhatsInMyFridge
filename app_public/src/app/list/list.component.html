@@ -1,0 +1,31 @@
+<!--<app-page-header [content]="pageContent.header"></app-page-header>
+<div class="row">
+  <div class="col-12 col-lg-8" [innerHTML]="pageContent.content | htmlLineBreaks"></div>
+</div>-->
+<div class="padding-left-50">
+    <h1 class="padding-top-20">Items in my Fridge</h1>
+    <h3 [innerHTML]="message"></h3>
+    <div class="card-deck padding-top-20" *ngFor="let item of items">
+        <div class="card bg-light mb-3" style="max-width:18rem">
+            <div class="card-header" style="background-color: #283c4f;color: white;text-align:center;font-weight:bold;font-size:30px">
+                {{item.name}}
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <p *ngIf="item.expiry">Expires: </p>
+                </div>
+                <p style="font-style: italic">Date: </p>
+                <p> You have <span style="font-weight:bold"> {{item.quantity}} </span> left!</p>
+                <p>Is it a Left-Over? <span *ngIf="item.left_overs == 'True';else other_content">Yes</span> 
+                    <ng-template #other_content>No</ng-template>
+                </p>
+                
+
+                
+            </div>
+            <div class="card-footer" style="background-color:#283c4f;color:white;text-align:center;font-weight:bold;">
+                <a style="color:white" routerLink='/delete/{{item.id}}'>Remove from fridge</a> 
+            </div>
+        </div>
+    </div>
+</div>
