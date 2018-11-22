@@ -30,6 +30,16 @@ export class ListComponent implements OnInit {
         this.items = data;
     });
   }
+  
+  public deleteItem(itemId){
+    console.log(itemId)
+    this.fridgeDataService.deleteItem(itemId)
+    .subscribe(data => {
+       if(data == 200 || data == 204){
+         this.ngOnInit();
+       }
+    });
+  }
 
   ngOnInit() {
     this.getItems();

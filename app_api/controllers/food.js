@@ -101,7 +101,7 @@ module.exports.foodItemDelete = function(req, res) {
 							sendJsonResponse(res, 404, err);
 							return;
 						}
-						console.log("Delete Success in API:", err);
+						console.log("Delete Success in API:");
 						sendJsonResponse(res, 204, null);
 					});
 				}

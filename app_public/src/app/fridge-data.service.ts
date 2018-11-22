@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
 
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch'
 
 export class Fridge{
   _id: string;
@@ -27,6 +31,15 @@ export class FridgeDataService {
       .get(url)
       .toPromise()
       .then(response => response.json() as Fridge[])
+      .catch(this.handleError);
+  }
+  
+  public deleteItem(itemId): Observable<number> {
+    const url: string = `${this.apiBaseUrl}/food/${itemId}`;
+    console.log(url)
+    return this.http
+      .delete(url)
+      .map(response => response.status)
       .catch(this.handleError);
   }
 

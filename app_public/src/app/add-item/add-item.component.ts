@@ -22,17 +22,13 @@ export class AddItemComponent implements OnInit {
     this.message = error.message;
   };
   
-  private getItems(): void {
-    this.message = 'Getting items from your fridge...';
-    this.fridgeDataService.getItems()
-    .then(data => {
-        this.message = data.length > 0 ? '' : 'No items in fridge! Time to restock!';
-        this.items = data;
-    });
+  public onSubmit(user: Fridge): void {
+    console.log(user);
+
   }
 
   ngOnInit() {
-    this.getItems();
+    
   }
 
   
