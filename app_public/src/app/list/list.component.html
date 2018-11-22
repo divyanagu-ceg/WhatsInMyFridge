@@ -1,7 +1,3 @@
-<!--<app-page-header [content]="pageContent.header"></app-page-header>
-<div class="row">
-  <div class="col-12 col-lg-8" [innerHTML]="pageContent.content | htmlLineBreaks"></div>
-</div>-->
 <div class="padding-left-50">
     <h1 class="padding-top-20">Items in my Fridge</h1>
     <h3 [innerHTML]="message"></h3>
@@ -12,9 +8,9 @@
             </div>
             <div class="card-body">
                 <div class="card-text">
-                    <p *ngIf="item.expiry">Expires: </p>
+                    <p *ngIf="item.expiry" style="font-style: italic">Expires: {{item.expiry | date: 'dd-MMM-yyyy'}}</p>
                 </div>
-                <p style="font-style: italic">Date: </p>
+                <p style="font-style: italic">Date: {{item.date | date: 'dd-MMM-yyyy'}}</p>
                 <p> You have <span style="font-weight:bold"> {{item.quantity}} </span> left!</p>
                 <p>Is it a Left-Over? <span *ngIf="item.left_overs == 'True';else other_content">Yes</span> 
                     <ng-template #other_content>No</ng-template>

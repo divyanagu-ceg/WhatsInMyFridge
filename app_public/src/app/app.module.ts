@@ -5,11 +5,13 @@ import { RouterModule }   from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
+import { AddItemComponent } from './add-item/add-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent
+    ListComponent,
+    AddItemComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +24,10 @@ import { ListComponent } from './list/list.component';
       {
         path: 'list',
         component: ListComponent
+      },
+      {
+        path: 'add-item',
+        component: AddItemComponent
       }
     ])
   ],
