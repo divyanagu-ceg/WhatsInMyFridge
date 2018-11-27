@@ -1,27 +1,25 @@
 <div class="padding-left-50">
-    <h1 class="padding-top-20">Items in my Fridge</h1>
-    <h3 [innerHTML]="message"></h3>
-    <div class="card-deck padding-top-20" >
-        <div class="card bg-light mb-3" style="max-width:18rem" *ngFor="let item of items">
-            <div class="card-header" style="background-color: #283c4f;color: white;text-align:center;font-weight:bold;font-size:30px">
-                {{item.name}}
+   <h1 class="padding-top-20">Items in my Fridge</h1>
+   <h3 [innerHTML]="message"></h3>
+   <div class="card-deck padding-top-20" >
+      <div class="card bg-light mb-3" style="max-width:18rem" *ngFor="let item of items">
+         <div class="card-header" style="background-color: #283c4f;color: white;text-align:center;font-weight:bold;font-size:30px">
+            {{item.name}}
+         </div>
+         <div class="card-body">
+            <div class="card-text">
+               <p *ngIf="item.expiry" style="font-style: italic">Expires: {{item.expiry | date: 'dd-MMM-yyyy'}}</p>
             </div>
-            <div class="card-body">
-                <div class="card-text">
-                    <p *ngIf="item.expiry" style="font-style: italic">Expires: {{item.expiry | date: 'dd-MMM-yyyy'}}</p>
-                </div>
-                <p style="font-style: italic">Date: {{item.date | date: 'dd-MMM-yyyy'}}</p>
-                <p> You have <span style="font-weight:bold"> {{item.quantity}} </span> left!</p>
-                <p>Is it a Left-Over? <span *ngIf="item.left_overs == 'True';else other_content">Yes</span> 
-                    <ng-template #other_content>No</ng-template>
-                </p>
-                
-
-                
-            </div>
-            <div class="card-footer" style="background-color:#283c4f;color:white;text-align:center;font-weight:bold;">
-                <a style="color:white;cursor: pointer" (click)="deleteItem(item._id)">Remove from fridge</a> 
-            </div>
-        </div>
-    </div>
+            <p style="font-style: italic">Date: {{item.date | date: 'dd-MMM-yyyy'}}</p>
+            <p> You have <span style="font-weight:bold"> {{item.quantity}} </span> left!</p>
+            <p>
+               Is it a Left-Over? <span *ngIf="item.left_overs == 'True';else other_content">Yes</span> 
+               <ng-template #other_content>No</ng-template>
+            </p>
+         </div>
+         <div class="card-footer" style="background-color:#283c4f;color:white;text-align:center;font-weight:bold;">
+            <a style="color:white;cursor: pointer" (click)="deleteItem(item._id)">Remove from fridge</a> 
+         </div>
+      </div>
+   </div>
 </div>

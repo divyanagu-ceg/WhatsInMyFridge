@@ -1,20 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { NgForm } from '@angular/forms';
+
 import { FridgeDataService } from '../fridge-data.service';
 import { Fridge } from '../fridge-data.service';
 
 
 @Component({
-    selector: 'list',
-    templateUrl: './list.component.html',
-    styleUrls: ['./list.component.css'],
+    selector: 'update-item',
+    templateUrl: './update-item.component.html',
+    styleUrls: ['./update-item.component.css'],
     providers: [FridgeDataService]
 })
-export class ListComponent implements OnInit {
+export class UpdateItemComponent implements OnInit {
 
-    constructor(private fridgeDataService: FridgeDataService) {}
+    constructor(private fridgeDataService: FridgeDataService) {
+        this.form = new FormGroup({
+            item: new FormControl(null)
+        })
+    }
     items: Fridge[];
     message: string;
-
+    form: FormGroup;
+    
+    get item(): string {
+        return this.form ? this.form.get('item').value : '';
+    }
     private showError(error: any): void {
         this.message = error.message;
     };
@@ -32,21 +43,9 @@ export class ListComponent implements OnInit {
                 this.message = "Error while connecting to database! Please check database connectivity!";
             });
     }
-
-    public deleteItem(itemId) {
-        console.log("Item id to delete ", itemId);
-        this.fridgeDataService.deleteItem(itemId)
-            .subscribe(data => {
-                if (data == 200 || data == 204) {
-                    this.ngOnInit();
-                }else{
-                    this.message = "Error while deleting item!";
-                }
-            },
-            err => {
-                console.error(JSON.stringify(err));
-                this.message = "Error while connecting to database! Please check database connectivity!";
-            });
+    onSubmit(updateFood: NgForm) {
+        console.log("Item object ", JSON.stringify(updateFood.value));
+        console.log("Is form valid?", updateFood.valid);
     }
 
     ngOnInit() {

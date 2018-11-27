@@ -1,0 +1,46 @@
+<div class="padding-left-50">
+   <h1 class="padding-top-20">Items in my Fridge</h1>
+   <h3 [innerHTML]="message"></h3>
+   <div class="col-md-3">
+       <form [formGroup]="form">
+	       <select formControlName="item" class="form-control">
+                <option [ngValue]="null" selected>Select Item to Update</option>
+                <option *ngFor="let item of items" [ngValue]="item">{{item.name}}</option>
+            </select>
+
+	    <!--   <p>Selected : {{item?.name}}</p>-->
+           
+       </form>
+    </div>
+    <div *ngIf="item" class="col-md-12" class="padding-top-20">
+        <form class="form-horizontal" #updatefood="ngForm" (ngSubmit)="onSubmit(updatefood)">
+            <div class="form-group row" >
+        <label class="col-xs-10 col-sm-4 control-label" for="name">Name</label>
+        <div class="col-xs-12 col-sm-4">
+          <input class="form-control" id="name" name="name" disabled  [(ngModel)]="item.name"/>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xs-10 col-sm-4 control-label" for="date">Date</label>
+        <div class="col-xs-12 col-sm-4">
+          <input class="form-control" id="date" name="date" placeholder="mm-dd-yyyy" required  [ngModel]="item.date | date: 'dd-MMM-yyyy'"  (ngModelChange)="item.date=$event"/>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xs-10 col-sm-4 control-label" for="edate">Expiry Date</label>
+        <div class="col-xs-12 col-sm-4">
+          <input class="form-control" id="edate" name="edate" placeholder="mm-dd-yyyy" [ngModel]="item.expiry | date: 'dd-MMM-yyyy'"  (ngModelChange)="item.expiry=$event"/>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xs-10 col-sm-4 control-label" for="quantity">Quantity</label>
+        <div class="col-xs-12 col-sm-2">
+          <input class="form-control" id="quantity" name="quantity" type="number" min="1" required  [(ngModel)]="item.quantity"/>
+        </div>
+      </div>
+            <input type="hidden" name="id" [(ngModel)]="item._id"/>
+            <button class="btn btn-default" type="button" (click)="save()" [disabled]="!updatefood.dirty" >Update Fridge</button>
+        </form>
+            
+    </div>
+</div>
