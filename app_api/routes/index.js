@@ -14,5 +14,8 @@ router.post('/food', ctrlFood.foodItemCreate);
 //delete item
 router.delete('/food/:foodId', ctrlFood.foodItemDelete);
 
+//update item
+router.put('/food/:foodId', ctrlFood.foodItemUpdate);
+
 
 module.exports = router;

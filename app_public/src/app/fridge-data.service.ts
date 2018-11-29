@@ -49,9 +49,18 @@ export class FridgeDataService {
             .map(response => response.status)
             .catch(this.handleError);
     }
+    
+    public updateItem(foodItem, foodId): Observable < number >{
+        const url: string = `${this.apiBaseUrl}/food/` + foodId;
+        console.log(url)
+        return this.http
+            .put(url, foodItem)
+            .map(response => response.status)
+            .catch(this.handleError);
+    }
 
     private handleError(error: any): Promise < any > {
-        console.error('API Lookup error', JSON.stringify(error));
+        console.error('API Lookup error', error);
         return Promise.reject(error.message || error);
     }
 

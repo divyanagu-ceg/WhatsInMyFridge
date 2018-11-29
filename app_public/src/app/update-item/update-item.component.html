@@ -13,7 +13,7 @@
        </form>
     </div>
     <div *ngIf="item" class="col-md-12" class="padding-top-20">
-        <form class="form-horizontal" #updatefood="ngForm" (ngSubmit)="onSubmit(updatefood)">
+        <form class="form-horizontal" #updatefood="ngForm" >
             <div class="form-group row" >
         <label class="col-xs-10 col-sm-4 control-label" for="name">Name</label>
         <div class="col-xs-12 col-sm-4">
@@ -23,7 +23,7 @@
       <div class="form-group row">
         <label class="col-xs-10 col-sm-4 control-label" for="date">Date</label>
         <div class="col-xs-12 col-sm-4">
-          <input class="form-control" id="date" name="date" placeholder="mm-dd-yyyy" required  [ngModel]="item.date | date: 'dd-MMM-yyyy'"  (ngModelChange)="item.date=$event"/>
+          <input class="form-control" id="date" name="date" placeholder="mm-dd-yyyy" required  [ngModel]="item.date | date: 'dd-MMM-yyyy'"  (ngModelChange)="item.date=$event" disabled/>
         </div>
       </div>
       <div class="form-group row">
@@ -38,8 +38,7 @@
           <input class="form-control" id="quantity" name="quantity" type="number" min="1" required  [(ngModel)]="item.quantity"/>
         </div>
       </div>
-            <input type="hidden" name="id" [(ngModel)]="item._id"/>
-            <button class="btn btn-default" type="button" (click)="save()" [disabled]="!updatefood.dirty" >Update Fridge</button>
+            <button class="btn btn-default" type="button" (click)="save(updatefood.value, item._id)" [disabled]="!updatefood.dirty">Update Fridge</button>
         </form>
             
     </div>

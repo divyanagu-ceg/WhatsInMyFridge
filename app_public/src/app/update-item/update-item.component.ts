@@ -43,9 +43,22 @@ export class UpdateItemComponent implements OnInit {
                 this.message = "Error while connecting to database! Please check database connectivity!";
             });
     }
-    onSubmit(updateFood: NgForm) {
-        console.log("Item object ", JSON.stringify(updateFood.value));
-        console.log("Is form valid?", updateFood.valid);
+    
+    save(updateFood: NgForm, foodId: number){
+        console.log("Item object ", JSON.stringify(updateFood) + " " + foodId);
+        this.fridgeDataService.updateItem(updateFood, foodId)
+            .subscribe(data => {
+                    console.log(data);
+                    /*if (data == 201) {
+                        this.router.navigate(['/list']);
+                    } else {
+                        this.message = "Error occurred while adding data. Please try again!"
+                    }*/
+                },
+                err => {
+                    console.error(err);
+                    this.message = "Error while connecting to database! Please check database connectivity!";
+                });
     }
 
     ngOnInit() {

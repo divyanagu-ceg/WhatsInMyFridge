@@ -114,3 +114,42 @@ module.exports.foodItemDelete = function(req, res) {
 	}
 };
 
+/*function to update item in fridge*/
+module.exports.foodItemUpdate = function(req, res) {
+	var foodId = req.params.foodId;
+	console.log("Update---",req.params.foodId);
+	if (foodId) {
+		Fridge
+		.findById(foodId)
+		//.select('-name -date -left_overs')
+		.exec(
+			function (err, foodItem) {
+				console.log("Item found for id:", foodItem);
+				if(!foodItem){
+					sendJsonResponse(res, 404, {
+						"message": "FoodId not found"
+					});
+					return;
+				}else if (err) {
+					sendJsonResponse(res, 400, err);
+					return;
+				}
+				foodItem.quantity = req.body.quantity;
+				foodItem.expiry = req.body.edate;
+				foodItem.save(function(err, foodItem) {
+					if (err) {
+						sendJsonResponse(res, 404, {
+							"message": "Error while saving"
+					});
+					} else {
+						sendJsonResponse(res, 200, foodItem);
+					}
+				});
+			});
+	} else {
+		sendJsonResponse(res, 404, {
+			"message": "No food Item found"
+		});
+	}
+};
+
