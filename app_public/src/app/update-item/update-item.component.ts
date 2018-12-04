@@ -50,7 +50,7 @@ export class UpdateItemComponent implements OnInit {
         this.fridgeDataService.updateItem(updateFood, foodId)
             .subscribe(data => {
                     console.log(data);
-                    if (data == 200) {
+                    if (data == 204) {
                         this.router.navigate(['/list']);
                     } else {
                         this.message = "Error occurred while updating data. Please try again!"
