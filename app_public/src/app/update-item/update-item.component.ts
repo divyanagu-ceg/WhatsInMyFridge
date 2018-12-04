@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { NgForm } from '@angular/forms';
+import { Router } from "@angular/router"
 
 import { FridgeDataService } from '../fridge-data.service';
 import { Fridge } from '../fridge-data.service';
@@ -14,7 +15,7 @@ import { Fridge } from '../fridge-data.service';
 })
 export class UpdateItemComponent implements OnInit {
 
-    constructor(private fridgeDataService: FridgeDataService) {
+    constructor(private fridgeDataService: FridgeDataService, private router: Router) {
         this.form = new FormGroup({
             item: new FormControl(null)
         })

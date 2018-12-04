@@ -1,46 +1,46 @@
 <div class="row padding-top-20 padding-left-50">
-  <div class="col-xs-12 col-md-12">
-    <h3>Add food to the Fridge</h3>
-  </div>
-  <div class="col-xs-12 col-md-6 padding-top-20">
-    <form class="form-horizontal" #addfood="ngForm" (ngSubmit)="onSubmit(addfood)"><!--action="/food" method="post" role="form"--> 
+   <div class="col-xs-12 col-md-12">
+      <h3>Add food to the Fridge</h3>
+   </div>
+   <div class="col-xs-12 col-md-6 padding-top-20">
+      <form class="form-horizontal" #addfood="ngForm" (ngSubmit)="onSubmit(addfood)">
       <div class="form-group row">
-        <label class="col-xs-10 col-sm-4 control-label" for="name">Name</label>
-        <div class="col-xs-12 col-sm-4">
-          <input class="form-control" id="name" name="name" required  ngModel/>
-        </div>
+         <label class="col-xs-10 col-sm-4 control-label" for="name">Name</label>
+         <div class="col-xs-12 col-sm-4">
+            <input class="form-control" id="name" name="name" required  ngModel/>
+         </div>
       </div>
       <div class="form-group row">
-        <label class="col-xs-10 col-sm-4 control-label" for="date">Date</label>
-        <div class="col-xs-12 col-sm-4">
-          <input class="form-control" id="date" name="date" placeholder="mm-dd-yyyy" required  ngModel/>
-        </div>
+         <label class="col-xs-10 col-sm-4 control-label" for="date">Date</label>
+         <div class="col-xs-12 col-sm-4">
+            <input class="form-control" id="date" name="date" placeholder="mm-dd-yyyy" required  ngModel/>
+         </div>
       </div>
       <div class="form-group row">
-        <label class="col-xs-10 col-sm-4 control-label" for="edate">Expiry Date</label>
-        <div class="col-xs-12 col-sm-4">
-          <input class="form-control" id="edate" name="edate" placeholder="mm-dd-yyyy" ngModel/>
-        </div>
+         <label class="col-xs-10 col-sm-4 control-label" for="edate">Expiry Date</label>
+         <div class="col-xs-12 col-sm-4">
+            <input class="form-control" id="edate" name="edate" placeholder="mm-dd-yyyy" ngModel/>
+         </div>
       </div>
       <div class="form-group row">
-        <label class="col-xs-10 col-sm-4 control-label" for="quantity">Quantity</label>
-        <div class="col-xs-12 col-sm-2">
-          <input class="form-control" id="quantity" name="quantity" type="number" min="1" required  ngModel/>
-        </div>
+         <label class="col-xs-10 col-sm-4 control-label" for="quantity">Quantity</label>
+         <div class="col-xs-12 col-sm-2">
+            <input class="form-control" id="quantity" name="quantity" type="number" min="1" required  ngModel/>
+         </div>
       </div>
       <div class="form-group row">
-        <label class="col-xs-10 col-sm-4 control-label" for="left_over">Is it a left-over?</label>
-        <div class="col-xs-12 col-sm-3">
-          <select class="form-control input-sm" id="rating" name="left_over"  ngModel>
-            <option>False</option>
-            <option>True</option>
-          </select>
-        </div>
+         <label class="col-xs-10 col-sm-4 control-label" for="left_over">Is it a left-over?</label>
+         <div class="col-xs-12 col-sm-3">
+            <select class="form-control input-sm" id="rating" name="left_over"  ngModel>
+               <option>False</option>
+               <option>True</option>
+            </select>
+         </div>
       </div>
       <button class="btn btn-default">Add to Fridge</button>
-    </form>
-  </div>
-  <div class="col-xs-12 col-md-6">
-    <h2>{{message}}</h2>
-  </div>
+      </form>
+   </div>
+   <div class="col-xs-12 col-md-6">
+      <h2>{{message}}</h2>
+   </div>
 </div>

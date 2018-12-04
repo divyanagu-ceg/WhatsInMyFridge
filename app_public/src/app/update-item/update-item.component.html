@@ -6,10 +6,7 @@
 	       <select formControlName="item" class="form-control">
                 <option [ngValue]="null" selected>Select Item to Update</option>
                 <option *ngFor="let item of items" [ngValue]="item">{{item.name}}</option>
-            </select>
-
-	    <!--   <p>Selected : {{item?.name}}</p>-->
-           
+            </select>           
        </form>
     </div>
     <div *ngIf="item" class="col-md-12" class="padding-top-20">
@@ -39,7 +36,6 @@
         </div>
       </div>
             <button class="btn btn-default" type="button" (click)="save(updatefood.value, item._id)" [disabled]="!updatefood.dirty">Update Fridge</button>
-        </form>
-            
+        </form>  
     </div>
 </div>

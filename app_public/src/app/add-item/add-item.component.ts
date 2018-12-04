@@ -31,17 +31,17 @@ export class AddItemComponent implements OnInit {
         } else {
             this.fridgeDataService.addItem(addfood.value)
                 .subscribe(data => {
-                    console.log(JSON.stringify(data));
-                    if (data == 201) {
-                        this.router.navigate(['/list']);
-                    } else {
-                        this.message = "Error occurred while adding data. Please try again!"
-                    }
-                },
-                err => {
-                    console.error(JSON.stringify(err));
-                    this.message = "Error while connecting to database! Please check database connectivity!";
-                });
+                        console.log(JSON.stringify(data));
+                        if (data == 201) {
+                            this.router.navigate(['/list']);
+                        } else {
+                            this.message = "Error occurred while adding data. Please try again!"
+                        }
+                    },
+                    err => {
+                        console.error(JSON.stringify(err));
+                        this.message = "Error while connecting to database! Please check database connectivity!";
+                    });
         }
 
     }
