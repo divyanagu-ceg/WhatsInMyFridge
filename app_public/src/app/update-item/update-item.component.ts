@@ -49,11 +49,11 @@ export class UpdateItemComponent implements OnInit {
         this.fridgeDataService.updateItem(updateFood, foodId)
             .subscribe(data => {
                     console.log(data);
-                    /*if (data == 201) {
+                    if (data == 200) {
                         this.router.navigate(['/list']);
                     } else {
-                        this.message = "Error occurred while adding data. Please try again!"
-                    }*/
+                        this.message = "Error occurred while updating data. Please try again!"
+                    }
                 },
                 err => {
                     console.error(err);
