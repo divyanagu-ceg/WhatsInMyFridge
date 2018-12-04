@@ -17,6 +17,8 @@ module.exports.foodItemList = function(req, res) {
 				"message": "No items in fridge!"
 			});
 			return;
+		}else if(err){
+			sendJsonResponse(res, 500, err);
 		}else{
 			sendJsonResponse(res, 200, itemList);
 		}
@@ -40,7 +42,7 @@ module.exports.foodInfo = function(req, res) {
 				sendJsonResponse(res, 400, {"message": "No food id in request!!"});
 			}else{
 				console.log("Error");
-				sendJsonResponse(res, 404, err);
+				sendJsonResponse(res, 500, err);
 			}
 			return;
 		}
@@ -48,8 +50,8 @@ module.exports.foodInfo = function(req, res) {
 		});
 	} else {
 		console.log("No food Id in request");
-		sendJsonResponse(res, 404, {
-			"message": "No food item name in request!"
+		sendJsonResponse(res, 400, {
+			"message": "No food id in request!"
 		});
 	}
 };
@@ -87,7 +89,7 @@ module.exports.foodItemDelete = function(req, res) {
 						console.log("In save: " + foodItem);
 						if (err) {
 							console.log("In save Error: " + err);
-							sendJsonResponse(res, 404, err);
+							sendJsonResponse(res, 500, err);
 						} else {
 							sendJsonResponse(res, 200, foodItem);
 						}
@@ -98,7 +100,7 @@ module.exports.foodItemDelete = function(req, res) {
 					Fridge.remove({"_id": foodItem._id}, function(err, foodItem){
 						if(err){
 							console.log("Delete Error in API:", err);
-							sendJsonResponse(res, 404, err);
+							sendJsonResponse(res, 500, err);
 							return;
 						}
 						console.log("Delete Success in API:");
@@ -108,8 +110,8 @@ module.exports.foodItemDelete = function(req, res) {
 			}
 		);
 	} else {
-		sendJsonResponse(res, 404, {
-			"message": "No food Item found"
+		sendJsonResponse(res, 400, {
+			"message": "No foodId in URL"
 		});
 	}
 };
@@ -131,24 +133,24 @@ module.exports.foodItemUpdate = function(req, res) {
 					});
 					return;
 				}else if (err) {
-					sendJsonResponse(res, 400, err);
+					sendJsonResponse(res, 500, err);
 					return;
 				}
 				foodItem.quantity = req.body.quantity;
 				foodItem.expiry = req.body.edate;
 				foodItem.save(function(err, foodItem) {
 					if (err) {
-						sendJsonResponse(res, 404, {
+						sendJsonResponse(res, 500, {
 							"message": "Error while saving"
 					});
 					} else {
-						sendJsonResponse(res, 200, foodItem);
+						sendJsonResponse(res, 204, null);
 					}
 				});
 			});
 	} else {
-		sendJsonResponse(res, 404, {
-			"message": "No food Item found"
+		sendJsonResponse(res, 400, {
+			"message": "No foodId in URL"
 		});
 	}
 };
